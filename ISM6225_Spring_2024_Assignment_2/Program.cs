@@ -53,7 +53,7 @@ namespace Assignment_2
 
             // Question 8: Fibonacci Number
             Console.WriteLine("Question 8:");
-            int n = 55;
+            int n = 4;
             int fibonacciNumber = Fibonacci(n);
             Console.WriteLine(fibonacciNumber);
         }
