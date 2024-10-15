@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Assignment_2
 {
@@ -15,7 +16,7 @@ namespace Assignment_2
 
             // Question 2: Sort Array by Parity
             Console.WriteLine("Question 2:");
-            int[] nums2 = { 3, 1, 2, 4 };
+            int[] nums2 = { 3, 1, 2, 4};
             int[] sortedArray = SortArrayByParity(nums2);
             Console.WriteLine(string.Join(",", sortedArray));
 
@@ -52,7 +53,7 @@ namespace Assignment_2
 
             // Question 8: Fibonacci Number
             Console.WriteLine("Question 8:");
-            int n = 4;
+            int n = 55;
             int fibonacciNumber = Fibonacci(n);
             Console.WriteLine(fibonacciNumber);
         }
@@ -62,8 +63,19 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new List<int>(); // Placeholder
+                int n = nums.Length;
+                IList<int> missingNumbers = new List<int>();
+
+                // Find the missing numbers in the array
+                for (int i = 1; i <= n; i++)
+                {
+                    if (!nums.Contains(i))
+                    {
+                        missingNumbers.Add(i);   
+                    }
+                }
+
+                return missingNumbers;
             }
             catch (Exception)
             {
@@ -76,8 +88,25 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                List<int> evens = new List<int>();
+                List<int> odds = new List<int>();
+
+                // Separe the numbers into even and odd lists
+                foreach (int num in nums)
+                {
+                    if (num % 2 == 0)
+                    {
+                        evens.Add(num);
+                    }
+                    else
+                    {
+                        odds.Add(num);
+                    }
+                }
+
+                // Combine the lists to make the sorted array
+                int[] sortedArray = evens.Concat(odds).ToArray();
+                return sortedArray;
             }
             catch (Exception)
             {
@@ -90,8 +119,25 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                int n = nums.Length;
+                int[] indices = null;
+
+                // Run the loop to find the sum combination
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (nums[i] + nums[j] == target)
+                        {
+                            indices = new int[] { i, j };
+                            break; // Break out of the loop as indices are found
+                        }
+                    }
+                    if (indices != null)
+                        break; // Break out of the loop again as indices are found          
+                }
+
+                return indices;
             }
             catch (Exception)
             {
@@ -104,8 +150,16 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                int n = nums.Length;
+
+                // The product of 3 biggest (positive) numbers should return the greatest value
+                int product1 = nums[n - 1] * nums[n - 2] * nums[n - 3]; 
+                // If the array contains negative numbers, the product of 2 smallest negative will return a positive value
+                // Multiply that by the largest positive numbers might return the greatest product possible
+                int product2 = nums[0] * nums[1] * nums[n - 1];
+
+                int maxProduct = Math.Max(product1, product2); // Compare the two options
+                return maxProduct;
             }
             catch (Exception)
             {
@@ -118,8 +172,8 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return "101010"; // Placeholder
+                string binary = Convert.ToString(decimalNumber, 2);
+                return binary;
             }
             catch (Exception)
             {
@@ -132,8 +186,9 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);
+                int minElement = nums[0];
+                return minElement;
             }
             catch (Exception)
             {
@@ -146,8 +201,20 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return false; // Placeholder
+                // Reverse the digits of number x
+                char[] digits = x.ToString().ToCharArray();
+                Array.Reverse(digits);
+                string reversedString = new string(digits);
+                int newX = int.Parse(reversedString);
+
+                // Check to see if x is a palindrome number
+                bool palindrome = false;
+                if (newX == x)
+                {
+                    palindrome = true;
+                }
+
+                return palindrome;
             }
             catch (Exception)
             {
@@ -160,8 +227,19 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                // Apply the constraint
+                if (n < 0 || n > 30)
+                {
+                    throw new Exception("n must be between 0 and 30");
+                }
+                
+                // Calculate the Fibonacci
+                if (n <= 1)
+                    {
+                        return n;
+                    }
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+                
             }
             catch (Exception)
             {
