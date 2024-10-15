@@ -187,6 +187,7 @@ namespace Assignment_2
             try
             {
                 Array.Sort(nums);
+                // Ater sorting, the smallest number should be the first one in the array
                 int minElement = nums[0];
                 return minElement;
             }
